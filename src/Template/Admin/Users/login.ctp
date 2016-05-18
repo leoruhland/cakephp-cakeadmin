@@ -18,9 +18,7 @@ use Cake\Core\Configure;
 
 <div class="wrapper">
     <?= $this->Form->create(null, ['class' => 'form-signin']) ?>
-    <div class="logo-cm">
-        <?= $this->Html->image('LightStrap.cakemanager.png'); ?>
-    </div>
+    <h2 class="text-center">Login</h2>
     <?= $this->Flash->render('auth') ?>
     <?= $this->Flash->render() ?>
     <fieldset>
@@ -35,9 +33,8 @@ use Cake\Core\Configure;
             'label' => false
         ]) ?>
     </fieldset>
-    <?= $this->Form->button(__d('LightStrap', 'Login'), ['class' => 'btn btn-lg btn-primary btn-block']); ?>
+    <?= $this->Form->button(__('Sign in'), ['class' => 'btn btn-lg btn-primary btn-block']); ?>
     <?= $this->Html->link('Forgot password?', ['action' => 'forgot'], ['data-toggle' => 'modal', 'data-target' => '#forgotPass', 'class' => 'btn btn-block btn-link']); ?>
-
     <?= $this->Form->end() ?>
     <?php
     $content = '<i class="fa fa-cog fa-spin"></i>';
@@ -46,4 +43,3 @@ use Cake\Core\Configure;
     echo $this->Modal->end();
     ?>
 </div>
-
