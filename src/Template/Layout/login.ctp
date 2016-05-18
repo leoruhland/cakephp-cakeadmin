@@ -25,12 +25,12 @@ $this->assign('title', $title);
 		<?= $this->fetch('title') ?>
 	</title>
 	<?= $this->Html->meta('icon') ?>
-	<?= (Configure::read('CA.LightStrap.subtheme') !== '') ? $this->Html->css('LightStrap.themes/' . strtolower(Configure::read('CA.LightStrap.subtheme')) . '/bootstrap.min.css') : $this->Html->css('LightStrap.bootstrap.min.css'); ?>
-	<?= $this->Html->css('LightStrap.font-awesome.min.css') ?>
-	<?= $this->Html->css('LightStrap.main') ?>
-	<?= $this->Html->script('LightStrap.jquery.min.js') ?>
-	<?= $this->Html->script('LightStrap.bootstrap.min.js') ?>
-	<?= $this->Html->script('LightStrap.main.js') ?>
+	<?= (Configure::read('CA.LightStrap.subtheme') !== '') ? $this->Html->css('CakeAdmin.themes/' . strtolower(Configure::read('CA.LightStrap.subtheme')) . '/bootstrap.min.css') : $this->Html->css('LightStrap.bootstrap.min.css'); ?>
+	<?= $this->Html->css('CakeAdmin.font-awesome.min.css') ?>
+	<?= $this->Html->css('CakeAdmin.main') ?>
+	<?= $this->Html->script('CakeAdmin.jquery.min.js') ?>
+	<?= $this->Html->script('CakeAdmin.bootstrap.min.js') ?>
+	<?= $this->Html->script('CakeAdmin.main.js') ?>
 	<?= $this->fetch('meta') ?>
 	<?= $this->fetch('css') ?>
 	<?= $this->fetch('script') ?>
