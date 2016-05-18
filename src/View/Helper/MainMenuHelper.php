@@ -139,7 +139,7 @@ class MainMenuHelper extends Helper implements MenuBuilderInterface
      */
     public function beforeItem($item = [], $options = [])
     {
-        return '';
+        // TODO: Implement beforeItem() method.
     }
 
     /**
@@ -153,6 +153,6 @@ class MainMenuHelper extends Helper implements MenuBuilderInterface
      */
     public function afterItem($item = [], $options = [])
     {
-        return '';
+        // TODO: Implement afterItem() method.
     }
 }

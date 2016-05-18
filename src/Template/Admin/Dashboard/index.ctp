@@ -1,28 +1,39 @@
 <?php
-$this->set('title', 'Dashboard');
+/**
+ * CakeManager (http://cakemanager.org)
+ * Copyright (c) http://cakemanager.org
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) http://cakemanager.org
+ * @link          http://cakemanager.org CakeManager Project
+ * @since         1.0
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
+$this->set('title', __d('LightStrap','Dashboard'));
 ?>
-
-<h3>Dashboard</h3>
-
 <div class="row">
-    <div class="columns large-12 top">
-        <?= $this->cell('CakeAdmin.Dashboard::welcome') ?>
-    </div>
+	<div class="col-md-12">
+		<div class="jumbotron">
+			<?= $this->cell('CakeAdmin.Dashboard::welcome') ?>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<?= $this->cell('CakeAdmin.Dashboard::gettingStarted') ?>
+		<?= $this->cell('CakeAdmin.Dashboard::plugins'); ?>
+		<?= $this->cell('CakeAdmin.Dashboard::gettingHelp'); ?>
+	</div>
+	<div class="col-md-6">
+		<?= $this->cell('CakeAdmin.Dashboard::latestPosts'); ?>
+	</div>
 </div>
 
 <div class="row">
-    <div class="columns large-6 left">
-        <?= $this->cell('CakeAdmin.Dashboard::gettingStarted') ?>
-        <?= $this->cell('CakeAdmin.Dashboard::plugins'); ?>
-        <?= $this->cell('CakeAdmin.Dashboard::gettingHelp'); ?>
-    </div>
-    <div class="columns large-6 right">
-        <?= $this->cell('CakeAdmin.Dashboard::latestPosts'); ?>
-    </div>
-</div>
-
-<div class="row">
-    <div class="columns large-12 bottom">
-        <?= $this->cell('CakeAdmin.Dashboard::aboutUs') ?>
-    </div>
+	<div class="col-md-12">
+		<?= $this->cell('CakeAdmin.Dashboard::aboutUs') ?>
+	</div>
 </div>

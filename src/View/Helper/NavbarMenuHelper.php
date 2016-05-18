@@ -40,7 +40,6 @@ class NavBarMenuHelper extends Helper implements MenuBuilderInterface
      * @var array
      */
     protected $_defaultConfig = [];
-
     /**
      * afterMenu
      *
@@ -54,7 +53,6 @@ class NavBarMenuHelper extends Helper implements MenuBuilderInterface
     {
         return '</ul>';
     }
-
     /**
      * afterSubItem
      *
@@ -68,7 +66,6 @@ class NavBarMenuHelper extends Helper implements MenuBuilderInterface
     {
         return '';
     }
-
     /**
      * beforeMenu
      *
@@ -80,9 +77,8 @@ class NavBarMenuHelper extends Helper implements MenuBuilderInterface
      */
     public function beforeMenu($menu = [], $options = [])
     {
-        return '<ul style="margin-left: 0px">';
+        return '<ul style="margin-left: 0px" class="nav nav-tabs">';
     }
-
     /**
      * afterSubItem
      *
@@ -96,7 +92,6 @@ class NavBarMenuHelper extends Helper implements MenuBuilderInterface
     {
         return '';
     }
-
     /**
      * item
      *
@@ -108,14 +103,14 @@ class NavBarMenuHelper extends Helper implements MenuBuilderInterface
      */
     public function item($item = [], $options = [])
     {
-        $html = '<li style="display: inline; list-style-type: none; padding-right: 20px;">';
-        $html .= (key_exists('active', $item) && $item['active'] ? '<b>' : '');
+        $html = '<li role="presentation" class="';
+        $html .= (key_exists('active', $item) && $item['active'] ? 'active' : '');
+        $html .= '">';
         $html .= $this->Html->link($item['title'], $item['url']);
         $html .= (key_exists('active', $item) ? '</b>' : '');
         $html .= '</li>';
         return $html;
     }
-
     /**
      * item
      *
@@ -141,7 +136,7 @@ class NavBarMenuHelper extends Helper implements MenuBuilderInterface
      */
     public function beforeItem($item = [], $options = [])
     {
-        return '';
+        // TODO: Implement beforeItem() method.
     }
 
     /**
@@ -155,6 +150,6 @@ class NavBarMenuHelper extends Helper implements MenuBuilderInterface
      */
     public function afterItem($item = [], $options = [])
     {
-        return '';
+        // TODO: Implement afterItem() method.
     }
 }

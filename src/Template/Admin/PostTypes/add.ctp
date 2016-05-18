@@ -12,20 +12,26 @@
  * @since         1.0
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+use Cake\Utility\Hash;
+use Cake\Utility\Inflector;
 
-$this->PostTypes->type($type);
+$this->Html->addCrumb(__d('LightStrap', 'Dashboard'), ['action' => 'index', 'controller' => 'dashboard']);
+$this->Html->addCrumb($type['alias'], ['action' => 'index', 'type' => $type['slug']]);
+$this->Html->addCrumb(__d('LightStrap', 'New {0}', $type['singularAlias']), '');
+echo $this->Html->getCrumbList();
 ?>
-
-<?= $this->PostTypes->header() ?>
-
-<?= $this->PostTypes->indexButton() ?>
-
-<hr>
-<?= $this->PostTypes->createForm($entity) ?>
+<?= $this->Form->create($entity, $type['formFields']['_create']); ?>
 <fieldset>
-    <?= $this->PostTypes->fieldset([
-        'on' => ['both', 'add']
-    ]) ?>
+    <legend><?= __d('LightStrap', 'Add {0}', $type['singularAlias']) ?></legend>
+    <?php
+    foreach ($type['formFields'] as $field => $options) {
+        if (substr($field, 0, 1) !== '_') {
+            if (in_array($options['on'], ['both', 'add'])) {
+                echo $this->Form->input($field, $options);
+            }
+        }
+    }
+    ?>
 </fieldset>
-<?= $this->PostTypes->submitForm() ?>
-<?= $this->PostTypes->endForm() ?>
+<?= $this->Form->button(__d('LightStrap', 'Submit')) ?>
+<?= $this->Form->end() ?>

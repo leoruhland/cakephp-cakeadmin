@@ -13,6 +13,9 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
+use Cake\Core\Configure;
+use Settings\Core\Setting;
+
 $this->assign('title', $title);
 ?>
 <!DOCTYPE html>
@@ -21,45 +24,63 @@ $this->assign('title', $title);
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $this->fetch('title') ?>
+        <?= $this->fetch('title') ?> / <?= Setting::read('App.Name') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
-
-    <?= $this->Html->css('CakeAdmin.base') ?>
-    <?= $this->Html->css('CakeAdmin.cake') ?>
-    <?= $this->Html->css('CakeAdmin.custom') ?>
-
+    <?= (Configure::read('CA.LightStrap.subtheme') !== '') ? $this->Html->css('CakeAdmin.themes/' . strtolower(Configure::read('CA.LightStrap.subtheme')) . '/bootstrap.min.css') : $this->Html->css('CakeAdmin.bootstrap.min.css'); ?>
+    <?= $this->Html->css('CakeAdmin.font-awesome.min.css') ?>
+    <?= $this->Html->css('CakeAdmin.main') ?>
+    <?= $this->Html->script('CakeAdmin.jquery.min.js') ?>
+    <?= $this->Html->script('CakeAdmin.bootstrap.min.js') ?>
+    <?= $this->Html->script('CakeAdmin.main.js') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
 <body>
 <header>
-    <div class="header-title">
-        <span><?= $this->fetch('title') ?></span>
-        <small>
-            <?= $this->Menu->menu('headerLeft', 'CakeAdmin.HeaderLeftMenu') ?>
-        </small>
-    </div>
-    <div class="header-help">
-        <span><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></span>
-        <span><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></span>
-    </div>
+    <nav
+        class="navbar <?= (Configure::read('CA.LightStrap.navbar') !== '') ? Configure::read('CA.LightStrap.navbar') : 'navbar-inverse' ?> navbar-static-top">
+        <div
+            class="<?= (Configure::read('CA.LightStrap.container') !== '') ? Configure::read('CA.LightStrap.container') : 'container' ?>">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><?= Setting::read('App.Name') ?></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav visible-xs">
+                    <?= $this->Menu->menu('main', 'CakeAdmin.MainMenu') ?>
+                </ul>
+                <?= $this->Menu->menu('headerLeft', 'CakeAdmin.HeaderMenu') ?>
+            </div>
+        </div>
+    </nav>
 </header>
-<div id="container">
-
+<div id="container"
+     class="<?= (Configure::read('CA.LightStrap.container') !== '') ? Configure::read('CA.LightStrap.container') : 'container' ?>">
     <div id="content">
-        <?= $this->Flash->render() ?>
 
         <div class="row">
-            <div class="actions columns large-2 medium-3">
-                <h3><?= __d('CakeAdmin', 'Menu') ?></h3>
-                <ul class="side-nav">
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <ul class="nav nav-pills nav-stacked hidden-xs">
                     <?= $this->Menu->menu('main', 'CakeAdmin.MainMenu') ?>
                 </ul>
             </div>
-
-            <div class="index large-10 medium-9 columns">
+            <div class="col-lg-10 col-md-10 col-sm-10">
+                <?= $this->Flash->render() ?>
                 <?= $this->fetch('content') ?>
             </div>
         </div>

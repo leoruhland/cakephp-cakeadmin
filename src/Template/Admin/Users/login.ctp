@@ -12,21 +12,38 @@
  * @since         1.0
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 use Cake\Core\Configure;
 
-$this->set('title', __d('CakeAdmin', 'Login'));
-
 ?>
-<div class="users form">
+
+<div class="wrapper">
+    <?= $this->Form->create(null, ['class' => 'form-signin']) ?>
+    <div class="logo-cm">
+        <?= $this->Html->image('LightStrap.cakemanager.png'); ?>
+    </div>
     <?= $this->Flash->render('auth') ?>
-    <?= $this->Form->create() ?>
+    <?= $this->Flash->render() ?>
     <fieldset>
-        <legend><?= __d('CakeAdmin', 'Login') ?></legend>
-        <?= $this->Form->input(Configure::read('CA.fields.username')) ?>
-        <?= $this->Form->input(Configure::read('CA.fields.password'), ['value' => '']) ?>
+        <?= $this->Form->input(Configure::read('CA.fields.username'), [
+            'placeholder' => 'E-mail',
+            'label' => false,
+            'autofocus' => 'autofocus'
+        ]) ?>
+        <?= $this->Form->input(Configure::read('CA.fields.password'), [
+            'value' => '',
+            'placeholder' => 'Password',
+            'label' => false
+        ]) ?>
     </fieldset>
-    <?= $this->Form->button(__d('CakeAdmin', 'Login')); ?>
+    <?= $this->Form->button(__d('LightStrap', 'Login'), ['class' => 'btn btn-lg btn-primary btn-block']); ?>
+    <?= $this->Html->link('Forgot password?', ['action' => 'forgot'], ['data-toggle' => 'modal', 'data-target' => '#forgotPass', 'class' => 'btn btn-block btn-link']); ?>
+
     <?= $this->Form->end() ?>
-    <?= $this->Html->link(__d('CakeAdmin', 'Forgot password'), ['action' => 'forgot']); ?>
+    <?php
+    $content = '<i class="fa fa-cog fa-spin"></i>';
+    echo $this->Modal->create(['id' => 'forgotPass']);
+    echo $this->Modal->body($content, ['class' => 'my-body-class']);
+    echo $this->Modal->end();
+    ?>
 </div>
+
